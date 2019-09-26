@@ -120,5 +120,8 @@ func (c *todoCounter) Done() <-chan struct{} {
 }
 
 func (c *todoCounter) Remaining() int32 {
+	c.RLock()
+	defer c.RUnlock()
+
 	return c.count
 }
