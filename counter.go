@@ -13,37 +13,37 @@ import (
 //
 // Use Counter like this:
 //
-//    todos := make(chan int, 10)
-//    ctr := todoctr.NewCounter()
+//	todos := make(chan int, 10)
+//	ctr := todoctr.NewCounter()
 //
-//    process := func(item int) {
-//      fmt.Println("processing %d\n...", item)
+//	process := func(item int) {
+//	  fmt.Println("processing %d\n...", item)
 //
-//      // this task may randomly generate more tasks
-//      if rand.Intn(5) == 0 {
-//        todos<- item + 1
-//        ctr.Increment(1) // increment counter for new task.
-//      }
+//	  // this task may randomly generate more tasks
+//	  if rand.Intn(5) == 0 {
+//	    todos<- item + 1
+//	    ctr.Increment(1) // increment counter for new task.
+//	  }
 //
-//      ctr.Decrement(1) // decrement one to signal the task being done.
-//    }
+//	  ctr.Decrement(1) // decrement one to signal the task being done.
+//	}
 //
-//    // add some tasks.
-//    todos<- 1
-//    todos<- 2
-//    todos<- 3
-//    todos<- 4
-//    ctr.Increment(4)
+//	// add some tasks.
+//	todos<- 1
+//	todos<- 2
+//	todos<- 3
+//	todos<- 4
+//	ctr.Increment(4)
 //
-//    for {
-//      select {
-//      case item := <- todos:
-//        go process(item)
-//      case <-ctr.Done():
-//        fmt.Println("done processing everything.")
-//        close(todos)
-//      }
-//    }
+//	for {
+//	  select {
+//	  case item := <- todos:
+//	    go process(item)
+//	  case <-ctr.Done():
+//	    fmt.Println("done processing everything.")
+//	    close(todos)
+//	  }
+//	}
 type Counter interface {
 	// Incrememnt adds a number of todos to track.
 	// If the counter is **below** zero, it panics.
