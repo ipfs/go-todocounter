@@ -1,3 +1,3 @@
 module github.com/ipfs/go-todocounter
 
-go 1.22
+go 1.23
